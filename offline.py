@@ -1,4 +1,5 @@
 import sys
+from function import *
 
 print(sys.argv)
 if(len(sys.argv)!=2):
@@ -24,7 +25,7 @@ while line:
     if(int(tmp[0]) != cpt): 
         print("offset error")
         exit()
-    
+
     offset = tmp[0]
     del tmp[0:3]
     tmp[-1] = tmp[-1][0:2]
@@ -50,3 +51,8 @@ except ValueError:
 
 print(tab)
 fp.close()
+p=0
+Ethernet(tab,p)
+
+
+
