@@ -67,7 +67,7 @@ fp.close()
 tramelist = []
 for trame in tab:
     out = Ethernet(trame.copy())
-    #print(out)
+    print(out)
     tramelist.append(out)
 
 show(tramelist)

@@ -3,7 +3,7 @@ from tkinter import filedialog
 import os
 
 root = tk.Tk()
-label = tk.Label(root,anchor='w')
+label = tk.Label(root,justify=tk.LEFT)
 buttonlist = []
 def openFile():
     filename = filedialog.askopenfilename(initialdir="/",title="Select File",filetypes=(("txt files","*.txt"),("all files","*.*")))
