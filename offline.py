@@ -1,14 +1,18 @@
+import tkinter as tk
 import sys
 from function import *
+from gui import *
 
-print(sys.argv)
-if(len(sys.argv)!=2):
-    print("pas de ficher entré")
+#print(sys.argv)
+if(len(sys.argv)==1):
+    path = openFile()
+elif(len(sys.argv)>2):
+    print("trop de arguments entrés")
     exit()
-
+else:
+    path = sys.argv[1]
 #readline
 try:
-    path = sys.argv[1]
     fp = open(path, 'r')
 except OSError:
     print("ficher error")
@@ -55,11 +59,15 @@ except ValueError:
     print("format error")
     exit()
 
-print(tab)
+#print(tab)
 fp.close()
-for trame in tab:
-    Ethernet(trame.copy())
 
-root = tk.Tk()
-root.mainloop()
+#affichage
+root = openWindow()
+for trame in tab:
+    out = Ethernet(trame.copy())
+    #print(out)
+    addTrame(root,out)
+
+show(root)
 
