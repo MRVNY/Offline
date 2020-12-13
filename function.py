@@ -3,7 +3,7 @@ def Ethernet(tab):
     out += "Source address : "+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+"\n"
     typeEternet = tab.pop(0)+tab.pop(0)
     if typeEternet == "0800":
-        out += "EtherType = Ipv4 (0806)\n"
+        out += "EtherType = Ipv4 (0800)\n"
         out += Ipv4(tab)
     if typeEternet == "0806":
         out += "EtherType = ARP (0806)"
@@ -14,7 +14,7 @@ def Ipv4(tab):
     out = "Version : Ipv4 ("+ tab[0][0]+")\n"
     headerLength = int(tab[0][1],16)*4
     out += "Header Length : "+ str(headerLength) +" octets ("+tab.pop(0)[1]+")\n"
-    out += "Type of Service :"+ tab.pop(0) 
+    out += "Type of Service :"+ tab.pop(0)+"\n" 
     t = int(tab[0]+tab[1],16)
     out += "Total Length : "+ str(t)+ " octets ("+ tab.pop(0)+tab.pop(0)+")\n"
     out += "Idientifier : 0x"+ tab.pop(0)+tab.pop(0)+ "\n"
