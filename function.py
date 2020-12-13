@@ -70,18 +70,19 @@ def tcp(tab):
     out += "\tUrgent Pointer : "+ tab.pop(0)+tab.pop(0)+"\n"
     #options
     out += "\tData : "+str(len(tab))+" octets \n"
-    if (scrport == 80 | dstport == 80): out+= http(tab)
+    if (scrport == 80 or dstport == 80): 
+        out += http(tab)
     return out
 
 def http(tab):
     out = "Couche http :\n"
-    while (tab[0]!="20"): out += chr(tab.pop(0))
+    while (tab[0]!="20"): out += tab.pop(0)
     tab.pop(0)
     out +=" "
-    while (tab[0]!="20"): out += chr(tab.pop(0))
+    while (tab[0]!="20"): out += tab.pop(0)
     tab.pop(0)
     out += " "
-    while (tab[0]!="0d"): out += chr(tab.pop(0))
+    while (tab[0]!="0d"): out += tab.pop(0)
     tab.pop(0)
     tab.pop(0)
     out += "\n"

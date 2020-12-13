@@ -28,11 +28,11 @@ while line:
         tmp = line.split(" ")
 
         #verifier offset 1
-        if(int(tmp[0]) == 0 and cpt>0): 
+        if(int(tmp[0],16) == 0 and cpt>0): 
             numTrame += 1
             tab.append([])
             cpt = 0
-        if(int(tmp[0]) != cpt): 
+        if(int(tmp[0],16) != cpt): 
             print("offset error")
             exit()
 
@@ -46,7 +46,7 @@ while line:
             exit()
         tab[numTrame] += tmp
 
-        cpt += 10
+        cpt += 16
     line = fp.readline()
 
 #verifier format 
@@ -65,13 +65,13 @@ fp.close()
 #affichage
 #root = openWindow()
 tramelist = []
-f = open("output.txt","w")
+#f = open("output.txt","w")
 for trame in tab:
     out = Ethernet(trame.copy())
     print(out)
     tramelist.append(out)
-    f.write(out)
+    #f.write(out)
 
 show(tramelist)
-f.close()
-notify("output.txt")
+#f.close()
+#notify("output.txt")
