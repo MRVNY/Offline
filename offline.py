@@ -63,11 +63,12 @@ except ValueError:
 fp.close()
 
 #affichage
-root = openWindow()
+#root = openWindow()
+tramelist = []
 for trame in tab:
     out = Ethernet(trame.copy())
     #print(out)
-    addTrame(root,out)
+    tramelist.append(out)
 
-show(root)
+show(tramelist)
 

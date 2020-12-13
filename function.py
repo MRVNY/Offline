@@ -5,7 +5,7 @@ def Ethernet(tab):
     typeEternet = tab.pop(0)+tab.pop(0)
     if typeEternet == "0800":
         out += "\tEtherType : Ipv4 (0x0800)\n"
-        out += "\tData : "+len(tab)+" octets \n"
+        out += "\tData : "+str(len(tab))+" octets \n"
         out += Ipv4(tab)
     if typeEternet == "0806":
         out += "\tEtherType : ARP (0x0806)\n"
@@ -40,7 +40,7 @@ def Ipv4(tab):
     out += "\tSource Ip Adress : "+ str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"\n"
     out += "\tDestination Ip Adress : "+ str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"\n"
     #options
-    out += "\tData : "+len(tab)+" octets \n"
+    out += "\tData : "+str(len(tab))+" octets \n"
     if (proto ==17): out+= tcp(tab)
     return out
 

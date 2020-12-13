@@ -1,29 +1,27 @@
 import tkinter as tk
 from tkinter import filedialog
-import tkinter.scrolledtext as st 
 import os
 
+root = tk.Tk()
+label = tk.Label(root,anchor='w')
+buttonlist = []
 def openFile():
-    root = tk.Tk()
     filename = filedialog.askopenfilename(initialdir="/",title="Select File",filetypes=(("txt files","*.txt"),("all files","*.*")))
     return filename
 
-def openWindow():
-    root = tk.Tk()
-    #canvas = tk.Canvas(root, height=700, width=700)
-    #canvas.pack()
-    #root.mainloop()
-    return root
-
-def addTrame(root, out):
-    text_area = st.ScrolledText(root, width = 50, height = 10, font = ("Times New Roman", 15)) 
-    text_area.grid(column = 0, pady = 10, padx = 10) 
-  
-    # Inserting Text which is read only 
-    text_area.insert(tk.INSERT,out) 
-    #l = tk.Label(root, text = out)
-    #l.pack()
-
-def show(root):
+def show(l):
+    for i in range(len(l)):
+        trameButton = TrameButton(l[i],i)
+        trameButton.button.pack()
     root.mainloop()
 
+class TrameButton:
+
+    def __init__(self,tr,i):
+
+        self.tr = tr
+        self.button = tk.Button(root,text="trame"+str(i),padx=200,command=self.click)
+
+    def click(self):
+        label.pack()
+        label.config(text=self.tr)
