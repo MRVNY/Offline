@@ -6,10 +6,11 @@ def Ethernet(tab):
     if typeEternet == "0800":
         out += "\tEtherType : Ipv4 (0x0800)\n"
         out += "\tData : "+str(len(tab))+" octets \n"
-        out += Ipv4(tab)
+        s,title = Ipv4(tab)
+        out += s
     if typeEternet == "0806":
         out += "\tEtherType : ARP (0x0806)\n"
-    return out
+    return out,title
 
 
 def Ipv4(tab):
@@ -32,17 +33,28 @@ def Ipv4(tab):
     out += "\tTime to live (TTL) : "+str(int(tab[0],16))+"(0x"+tab.pop(0)+")\n"
     proto = int(tab.pop(0),16)
     out += "\tProtocol : "
-    if (proto == 1): out += "\tICMP (0x01)\n"
-    elif (proto == 6): out += ("\tTCP (0x06)\n")
-    elif (proto == 17): out += "\tUDP (0x11)\n"
-    else: out += "\tNon reconnu\n"
+    if (proto == 1): 
+        out += "\tICMP (0x01)\n"
+        protoname = "ICMP"
+    elif (proto == 6): 
+        out += ("\tTCP (0x06)\n")
+        protoname = "TCP"
+    elif (proto == 17): 
+        out += "\tUDP (0x11)\n"
+        protoname = "UDP"
+    else: 
+        out += "\tNon reconnu\n"
+        protoname = "Unknown"
     out += "\tHeader Checksum : 0x"+ tab.pop(0)+tab.pop(0)+"\n"
-    out += "\tSource Ip Adress : "+ str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"\n"
-    out += "\tDestination Ip Adress : "+ str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"\n"
+    ipsrc = str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))
+    out += "\tSource Ip Adress : "+ipsrc+"\n"
+    ipdst = str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))
+    out += "\tDestination Ip Adress : "+ipdst+"\n"
+    title = "Src: "+ipsrc+" Dst: "+ipdst+" Protocol: "+protoname
     #options
     out += "\tData : "+str(len(tab))+" octets \n"
     if (proto ==6): out+= tcp(tab)
-    return out
+    return out,title
 
 def tcp(tab):
     out = "Couche tcp \n"
@@ -70,8 +82,7 @@ def tcp(tab):
     out += "\tUrgent Pointer : "+ tab.pop(0)+tab.pop(0)+"\n"
     #options
     out += "\tData : "+str(len(tab))+" octets \n"
-    if (scrport == 80 or dstport == 80): 
-        out += http(tab)
+    #if (scrport == 80 or dstport == 80): out += http(tab)
     return out
 
 def http(tab):
