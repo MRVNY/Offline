@@ -1,4 +1,5 @@
 import sys
+import tkinter as tk
 from function import *
 
 print(sys.argv)
@@ -14,7 +15,8 @@ except OSError:
     print("ficher error")
     exit()
 
-tab = []
+numTrame = 0
+tab = [][]
 line = fp.readline()
 cpt = 0 #pour verifier offset 1
 
@@ -51,8 +53,7 @@ except ValueError:
 
 print(tab)
 fp.close()
-p=0
-Ethernet(tab,p)
+Ethernet(tab.copy())
 
 
 
