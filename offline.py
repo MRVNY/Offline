@@ -20,6 +20,7 @@ except OSError:
 
 numTrame = 0
 tab = [[]]
+brut = [""]
 line = fp.readline()
 cpt = 0 #pour verifier offset 1
 
@@ -31,11 +32,14 @@ while line:
         if(int(tmp[0],16) == 0 and cpt>0): 
             numTrame += 1
             tab.append([])
+            brut.append("")
+            brut[numTrame] += line
             cpt = 0
         if(int(tmp[0],16) != cpt): 
             print("offset error")
             exit()
 
+        brut[numTrame] += line
         offset = tmp[0]
         del tmp[0:3]
         tmp[-1] = tmp[-1][0:2]
@@ -70,11 +74,11 @@ titlelist = []
 for trame in tab:
     out,title = Ethernet(trame.copy())
     print(title)
-    print(out+"\n")
+    #print(out+"\n")
     tramelist.append(out)
     titlelist.append(title)
     #f.write(out)
 
-show(tramelist,titlelist)
+show(tramelist,titlelist,brut)
 #f.close()
 #notify("output.txt")
