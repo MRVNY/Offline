@@ -46,10 +46,12 @@ def Ipv4(tab):
 
 def tcp(tab):
     out = "Couche tcp \n"
-    out += "\tSource port number : "+ str(int(tab.pop(0)+tab.pop(0),16))+"\n"
-    out += "\tDestination port number : "+ str(int(tab.pop(0)+tab.pop(0),16))+"\n"
+    scrport = int(tab.pop(0)+tab.pop(0),16)
+    out += "\tSource port number : "+ str(scrport)+"\n"
+    dstport = int(tab.pop(0)+tab.pop(0),16)
+    out += "\tDestination port number : "+ str(dstport)+"\n"
     out += "\tSequence number : "+ tab.pop(0)+tab.pop(0)+tab.pop(0)+tab.pop(0)+"\n"
-    out += "\tAcknowledgement number number : "+ tab.pop(0)+tab.pop(0)+tab.pop(0)+tab.pop(0)+"\n"
+    out += "\tAcknowledgement number : "+ tab.pop(0)+tab.pop(0)+tab.pop(0)+tab.pop(0)+"\n"
     headerLength = int(tab[0][0],16)*4
     out += "\tHeader Length : "+ str(headerLength) +" octets ("+tab[0][0]+")\n"
     f = bin(int(tab.pop(0)[1]+tab.pop(0), 16))[2:].zfill(12)
@@ -68,6 +70,7 @@ def tcp(tab):
     out += "\tUrgent Pointer : "+ tab.pop(0)+tab.pop(0)+"\n"
     #options
     out += "\tData : "+str(len(tab))+" octets \n"
+    if (scrport == 80 | dstport == 80): out+= http(tab)
     return out
 
 def http(tab):
