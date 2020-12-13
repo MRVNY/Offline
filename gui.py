@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
-import os
+import tkinter.messagebox
 
 root = tk.Tk()
 label = tk.Label(root,justify=tk.LEFT)
@@ -14,6 +14,9 @@ def show(l):
         trameButton = TrameButton(l[i],i)
         trameButton.button.pack()
     root.mainloop()
+
+def notify(s):
+    tk.messagebox.showinfo('Success','Info saved to '+s)
 
 class TrameButton:
 

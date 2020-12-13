@@ -65,10 +65,13 @@ fp.close()
 #affichage
 #root = openWindow()
 tramelist = []
+f = open("output.txt","w")
 for trame in tab:
     out = Ethernet(trame.copy())
     print(out)
     tramelist.append(out)
+    f.write(out)
 
 show(tramelist)
-
+f.close()
+notify("output.txt")
