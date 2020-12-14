@@ -18,7 +18,7 @@ def Ethernet(tab):
 
 
 def Ipv4(tab):
-    out = "Couche Ip :\n"
+    out = "\nCouche Ip :\n"
     out += "\tVersion : Ipv4 (0x"+ tab[0][0]+")\n"
     headerLength = int(tab[0][1],16)*4
     out += "\tHeader Length : "+ str(headerLength) +" octets (0x"+tab.pop(0)[1]+")\n"
@@ -125,7 +125,7 @@ def Ipv4(tab):
     return out,title
 
 def tcp(tab):
-    out = "Couche tcp \n"
+    out = "\nCouche tcp \n"
     scrport = int(tab.pop(0)+tab.pop(0),16)
     out += "\tSource port number : "+ str(scrport)+"\n"
     dstport = int(tab.pop(0)+tab.pop(0),16)
@@ -145,13 +145,14 @@ def tcp(tab):
     out += "\n\t\tRST : "+ f[9]
     out += "\n\t\tSYN : "+ f[10]
     out += "\n\t\tFIN : "+ f[11]
-    out += "\n\tWindows size : "+ str(int(tab.pop(0)+tab.pop(0),16))+" ("+tab.pop(0)+tab.pop(0)+")\n"
+    windSize = tab.pop(0)+tab.pop(0)
+    out += "\n\tWindows size : "+ str(int(windSize,16))+" ("+windSize+")\n"
     out += "\tChecksum : "+ tab.pop(0)+tab.pop(0)+"\n"
     out += "\tUrgent Pointer : "+ tab.pop(0)+tab.pop(0)+"\n"
     optnumber = 1
     optTotalLength = headerLength -20
     while (optTotalLength > 0):
-        out += "Option n° "+str(optnumber)+ "\n Type : "
+        out += "\tOption n° "+str(optnumber)+ "\n \t\tType : "
         opt = tab.pop(0)
         if (opt == "00"): 
             out += "End of Options List\n"
@@ -192,11 +193,11 @@ def tcp(tab):
                 out += "Non Reconnu \n"
             optLength = tab.pop(0)
             optTotalLength -= int(optLength,16)
-            out +="Length : " + str(int(optLength,16)) + " (0x"+optLength+")\n"
-            out += "Option Data : "
+            out +="\t\tLength : " + str(int(optLength,16)) + " (0x"+optLength+")\n" 
+            out += "\t\tOption Data : "
             optLength = int(optLength,16)-2
-            while(optLength > 1):
-                #erreur out += tab.pop(0)
+            while(optLength > 0):
+                out += tab.pop(0)
                 optLength-=1
             out += "\n" 
         optnumber+=1
@@ -205,7 +206,7 @@ def tcp(tab):
     return out
 
 def http(tab):
-    out = "Couche http :\n"
+    out = "\nCouche http :\n\t"
     while (tab[0]!="20"): out += bytearray.fromhex(tab.pop(0)).decode()
     tab.pop(0)
     out +=" "
@@ -215,7 +216,7 @@ def http(tab):
     while (tab[0]!="0d"): out += bytearray.fromhex(tab.pop(0)).decode()
     tab.pop(0)
     tab.pop(0)
-    out += "\n"
+    out += "\n\t"
     fin = 1
     while (fin) :
         cur = tab.pop(0)
@@ -223,10 +224,11 @@ def http(tab):
         elif (cur == "0d"): 
             if (prec == "0a"):
                 fin =0
-                out+="\n"
-            out +="\n"
-        else: out += bytearray.fromhex(tab.pop(0)).decode()
+            
+        else: out += bytearray.fromhex(cur).decode()
+        if (bytearray.fromhex(cur).decode() == "\n") : out += "\t"
         prec = cur
-    out += "\tData : "+" octets \n"
+    
+    out += "Data : "+str(len(tab))+" octets \n"
     return out
 
