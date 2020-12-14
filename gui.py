@@ -3,14 +3,16 @@ from tkinter import filedialog
 import tkinter.messagebox
 import tkinter.scrolledtext as st
 
-root = tk.Tk()
+root = tk.Tk(className="Analyser")
+hei = root.winfo_screenheight()
+wid = root.winfo_screenwidth()
 
 frame1 = tk.Frame(root)
-canvas1=tk.Canvas(frame1,height=400,width=550,scrollregion=(0,0,1300,1300))
+canvas1=tk.Canvas(frame1,height=hei*0.5,width=wid/2,scrollregion=(0,0,0,0))
 analyser = canvas1.create_text(10, 10, anchor="nw")
 
 frame2 = tk.Frame(root)
-canvas2=tk.Canvas(frame2,height=200,width=550,scrollregion=(0,0,800,800))
+canvas2=tk.Canvas(frame2,height=hei*0.2,width=wid/2,scrollregion=(0,0,0,0))
 raw = canvas2.create_text(10, 10, anchor="nw")
 
 class Trame:
@@ -26,7 +28,7 @@ class Menu:
 
     def __init__(self):
 
-        self.menu = tk.Listbox(root,width=60,height=5)
+        self.menu = tk.Listbox(root,width=int(wid/18),height=5)
         self.menu.bind("<<ListboxSelect>>", self.click)
         self.tlist = []
         self.strlist = []
@@ -38,8 +40,14 @@ class Menu:
         s = self.strlist[i]
         b = self.blist[i]
 
+        maxlen = 0
+        for line in s.splitlines():
+            maxlen = max(maxlen,len(line))
+
         canvas1.itemconfig(analyser,text=s)
+        canvas1.config(scrollregion=(0,0,(12+maxlen)*6.5,s.count("\n")*17))
         canvas2.itemconfig(raw,text=b)
+        canvas2.config(scrollregion=(0,0,0,b.count("\n")*17))
 
     def insert(self,tr):
         self.menu.insert(len(self.tlist),tr.title)

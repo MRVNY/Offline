@@ -123,7 +123,7 @@ def Ipv4(tab):
     if (proto ==6): 
         s,protoname = tcp(tab)
         out += s
-    title = "Src: "+ipsrc+" Dst: "+ipdst+" Protocol: "+protoname
+    title = "Src: "+ipsrc.ljust(15,' ')+"\tDst: "+ipdst.ljust(15, ' ')+"\tProtocol: "+protoname
     return out,title
 
 def tcp(tab):
@@ -209,7 +209,6 @@ def tcp(tab):
         tmp = ""
         if(len(tab)>20):
             for i in range(20): tmp += bytearray.fromhex(tab[i]).decode()
-            print(tmp)
             if('HTTP' in tmp): 
                 out += http(tab)
                 protoname = 'HTTP'
