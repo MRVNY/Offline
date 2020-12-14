@@ -7,7 +7,7 @@ from gui import *
 if(len(sys.argv)==1):
     path = openFile()
 elif(len(sys.argv)>2):
-    print("trop de arguments entrés")
+    print("too many arguments")
     exit()
 else:
     path = sys.argv[1]
@@ -15,53 +15,46 @@ else:
 try:
     fp = open(path, 'r')
 except OSError:
-    print("ficher error")
+    print("file error")
     exit()
 
 numTrame = 0
 tab = [[]]
 brut = [""]
-line = fp.readline()
-cpt = 0 #pour verifier offset 1
 
-while line:
-    if line != "\n":
-        tmp = line.split(" ")
+for line in fp.read().lower().splitlines():
+    tmp = line.split(' ')
 
-        #verifier offset 1
-        if(int(tmp[0],16) == 0 and cpt>0): 
+    #verifier offset
+    offset = tmp.pop(0)
+    try:
+        if(int(offset,16) == 0 and len(tab[numTrame])>0): 
             numTrame += 1
             tab.append([])
             brut.append("")
-            brut[numTrame] += line
-            cpt = 0
-        if(int(tmp[0],16) != cpt): 
+        if(int(offset,16) != len(tab[numTrame])): 
             print("offset error")
             exit()
+    except ValueError:
+        continue
 
-        brut[numTrame] += line
-        offset = tmp[0]
-        del tmp[0:3]
-        tmp[-1] = tmp[-1][0:2]
+    brut[numTrame] += offset + "  "
 
-        #verifier offset 2
-        if(int(offset,16) != len(tab[numTrame])):
-            print("offset error")
-            exit()
-        tab[numTrame] += tmp
+    #verifier format / eliminer mots invalides
+    
+    for oct in tmp:
+        try:
+            if(len(oct)==2 and int(oct,16)<=255):
+                brut[numTrame] += " " + oct
+                tab[numTrame].append(oct)
+        except ValueError:
+            continue
 
-        cpt += 16
+    brut[numTrame] += "\n"
+
     line = fp.readline()
 
-#verifier format 
-try:
-    for oct in tab[numTrame]:
-        if(len(oct)!=2 or int(oct,16)>255):
-            print("format error")
-            exit()
-except ValueError:
-    print("format error")
-    exit()
+
 
 #print(tab)
 fp.close()
