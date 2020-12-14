@@ -7,9 +7,9 @@ root = tk.Tk()
 #label = tk.Label(root,justify=tk.LEFT)
 frame1 = tk.Frame(root)
 frame2 = tk.Frame(root)
-canvas1=tk.Canvas(frame1,height=400,width=500,scrollregion=(0,0,1000,1000))
+canvas1=tk.Canvas(frame1,height=400,width=500,scrollregion=(0,0,1300,1300))
 analyser = canvas1.create_text(10, 10, anchor="nw")
-canvas2=tk.Canvas(frame2,height=200,width=500,scrollregion=(0,0,500,500))
+canvas2=tk.Canvas(frame2,height=200,width=500,scrollregion=(0,0,800,800))
 raw = canvas2.create_text(10, 10, anchor="nw")
 
 
@@ -38,7 +38,6 @@ class Menu:
         i = res[0]
         s = self.strlist[i]
         b = self.blist[i]
-        print(b)
 
         canvas1.itemconfig(analyser,text=s)
         canvas2.itemconfig(raw,text=b)
@@ -65,12 +64,15 @@ def show(trl,ttl,brut):
     frame2.grid()
     canvas1.grid()
     canvas2.grid()
-    scroll1 = tk.Scrollbar(frame1, orient="vertical", command=canvas1.yview)
-    scroll1.grid(row=0, column=1, sticky="ns")
-    canvas1.configure(yscrollcommand=scroll1.set)
-    scroll2 = tk.Scrollbar(frame2, orient="vertical", command=canvas2.yview)
-    scroll2.grid(row=0, column=1, sticky="ns")
-    canvas2.configure(yscrollcommand=scroll2.set)
+    scrolly1 = tk.Scrollbar(frame1, orient="vertical", command=canvas1.yview)
+    scrolly1.grid(row=0, column=1, sticky="ns")
+    canvas1.configure(yscrollcommand=scrolly1.set)
+    scrollx = tk.Scrollbar(frame1, orient="horizontal", command=canvas1.xview)
+    scrollx.grid(row=1, column=0, sticky="we")
+    canvas1.configure(xscrollcommand=scrollx.set)
+    scrolly2 = tk.Scrollbar(frame2, orient="vertical", command=canvas2.yview)
+    scrolly2.grid(row=0, column=1, sticky="ns")
+    canvas2.configure(yscrollcommand=scrolly2.set)
     root.mainloop()
 
 def notify(s):
