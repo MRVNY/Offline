@@ -54,7 +54,6 @@ def Ipv4(tab):
     out += "\tSource Ip Adress : "+ipsrc+"\n"
     ipdst = str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))
     out += "\tDestination Ip Adress : "+ipdst+"\n"
-    title = "Src: "+ipsrc+" Dst: "+ipdst+" Protocol: "+protoname
     #option
     optnumber = 1
     optTotalLength = headerLength -20
@@ -121,10 +120,14 @@ def Ipv4(tab):
                 optLength +=1
         optnumber +=1
     out += "\tData : "+str(len(tab))+" octets \n"
-    if (proto ==6): out+= tcp(tab)
+    if (proto ==6): 
+        s,protoname = tcp(tab)
+        out += s
+    title = "Src: "+ipsrc+" Dst: "+ipdst+" Protocol: "+protoname
     return out,title
 
 def tcp(tab):
+    protoname = "TCP"
     out = "\nCouche tcp \n"
     scrport = int(tab.pop(0)+tab.pop(0),16)
     out += "\tSource port number : "+ str(scrport)+"\n"
@@ -202,8 +205,15 @@ def tcp(tab):
             out += "\n" 
         optnumber+=1
     out += "\tData : "+str(len(tab))+" octets \n"
-    if (scrport == 80 or dstport == 80): out += http(tab)
-    return out
+    if (scrport == 80 or dstport == 80): 
+        tmp = ""
+        if(len(tab)>20):
+            for i in range(20): tmp += bytearray.fromhex(tab[i]).decode()
+            print(tmp)
+            if('HTTP' in tmp): 
+                out += http(tab)
+                protoname = 'HTTP'
+    return out, protoname
 
 def http(tab):
     out = "\nCouche http :\n\t"
