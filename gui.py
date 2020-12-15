@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
 import tkinter.messagebox
-import tkinter.scrolledtext as st
 
 root = tk.Tk(className="Analyser")
 hei = root.winfo_screenheight()
@@ -43,8 +42,6 @@ class Menu:
         maxlen = 0
         for line in s.splitlines():
             maxlen = max(maxlen,len(line))
-            #if(len(line)>=8 and "Couche" in line[0:8]):
-                #button1 = canvas1.create_text(10, 10,anchor="nw",text=line)
 
         canvas1.itemconfig(analyser,text=s)
         canvas1.config(scrollregion=(0,0,(12+maxlen)*6.5,s.count("\n")*17))
@@ -68,18 +65,18 @@ def show(trl,ttl,brut):
 
     frame1.grid()
     canvas1.grid()
-    #y
+    #scroll y
     scrolly1 = tk.Scrollbar(frame1, orient="vertical", command=canvas1.yview)
     scrolly1.grid(row=0, column=1, sticky="ns")
     canvas1.configure(yscrollcommand=scrolly1.set)
-    #x
+    #scroll x
     scrollx = tk.Scrollbar(frame1, orient="horizontal", command=canvas1.xview)
     scrollx.grid(row=1, column=0, sticky="we")
     canvas1.configure(xscrollcommand=scrollx.set)
 
     frame2.grid()
     canvas2.grid()
-    #y
+    #scroll y
     scrolly2 = tk.Scrollbar(frame2, orient="vertical", command=canvas2.yview)
     scrolly2.grid(row=0, column=1, sticky="ns")
     canvas2.configure(yscrollcommand=scrolly2.set)

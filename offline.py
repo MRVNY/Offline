@@ -2,7 +2,6 @@ import sys
 from function import *
 from gui import *
 
-
 def openFile():
     fp = ""
     while 1==1:
@@ -13,7 +12,8 @@ def openFile():
             if fp == "": exit()
             continue
     return fp
-
+    
+#verifier filepath
 if(len(sys.argv)==1):
     fp = openFile()
 elif(len(sys.argv)>2):
@@ -48,7 +48,6 @@ while 1==1:
         brut[numTrame] += offset + "  "
 
         #verifier format / eliminer mots invalides
-        
         for oct in tmp:
             try:
                 if(len(oct)==2 and int(oct,16)<=255):
@@ -61,29 +60,28 @@ while 1==1:
 
         line = fp.readline()
 
-    #print(tab)
     fp.close()
     break
 
 #affichage
 tramelist = []
 titlelist = []
-#f = open("output.txt","w")
+f = open("output.txt","w")
 for trame in tab:
-    #try:
-    out,title = Ethernet(trame.copy())
-    #except Exception:
-        #notify("Error","Error while analysing data")
-        #exit()
+    try:
+        out,title = Ethernet(trame.copy())
+    except Exception:
+        notify("Error","Error while analysing data")
+        exit()
 
     tramelist.append(out)
     titlelist.append(title)
-    #f.write(out)
-#try:
-show(tramelist,titlelist,brut)
-#except Exception:
-    #notify("Error","Error while showing")
-    #exit()
+    f.write(out)
+try:
+    show(tramelist,titlelist,brut)
+except Exception:
+    notify("Error","Error while showing")
+    exit()
 
-#f.close()
+f.close()
 notify("Success","Info saved to output.txt")
