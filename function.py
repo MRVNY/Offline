@@ -58,7 +58,7 @@ def Ipv4(tab):
     optnumber = 1
     optTotalLength = headerLength -20
     while (optTotalLength > 0):
-        out += "Option n° "+optnumber+ "\n Type : "
+        out += "Option n° "+str(optnumber)+ "\n Type : "
         opt = tab.pop(0)
         if (opt == "00"): 
             out += "End of Options List\n"
@@ -70,7 +70,7 @@ def Ipv4(tab):
             out += "Record Route\n"
             optLength = tab.pop(0)
             optTotalLength -=int(optLength,16)
-            out += "Length : " + int(optLength,16) +" (Ox"+ optLength+ ")\n"
+            out += "Length : " + str(int(optLength,16)) +" (Ox"+ str(optLength)+ ")\n"
             out += "Pointer : "+ tab.pop(0)+"\n"
             optLength = int(optLength,16)-3
             routerNo = 1
