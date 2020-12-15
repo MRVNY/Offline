@@ -26,11 +26,12 @@ else:
         notify("Error","File not found, please select another file")
         fp = openFile()
 
-numTrame = 0
-tab = [[]]
-brut = [""]
-
 while True:
+    numTrame = 0
+    tab = [[]]
+    brut = [""]
+    ifBreak = True
+    print("read")
     for line in fp.read().lower().splitlines():
         tmp = line.split(' ')
 
@@ -45,13 +46,13 @@ while True:
                 notify("Error","Offset error, please select another file")
                 fp.close()
                 fp = openFile()
+                ifBreak = False
                 break
         except ValueError:
             continue
 
-        brut[numTrame] += offset + "  "
-
         #verifier format / eliminer mots invalides
+        brut[numTrame] += offset + "  "
         for oct in tmp:
             try:
                 if(len(oct)==2 and int(oct,16)<=255):
@@ -61,38 +62,43 @@ while True:
                 continue
 
         brut[numTrame] += "\n"
+    if ifBreak: fp.close()
 
-        line = fp.readline()
-
-    fp.close()
-
-    #affichage
-    ifBreak = True
     tramelist = []
     titlelist = []
-    f = open("output.txt","w")
-    for trame in tab:
-        try:
-            out,title = Ethernet(trame.copy())
-        except Exception:
-            notify("Error","Error while analysing data, please select another file")
-            fp = openFile()
-            ifBreak = False
-            break
+    output = open("output.txt","w")
 
-        tramelist.append(out)
-        titlelist.append(title)
-        f.write(out)
+    #analyse & write
+    if ifBreak: 
+        for trame in tab:
+            try:
+                out,title = Ethernet(trame.copy())
+            except Exception:
+                notify("Error","Error while analysing data, please select another file")
+                output.close()
+                open("output.txt", 'w').close()
+                fp = openFile()
+                ifBreak = False
+                break
 
+            tramelist.append(out)
+            titlelist.append(title)
+            output.write("##########\n"+str(titlelist.index(title)+1)+" - "+title+"\n##########\n")
+            output.write(out+"\n\n")
+
+    #affichage
     if ifBreak:
         try:
             show(tramelist,titlelist,brut)
         except Exception:
             notify("Error","Error while showing, please select another file")
+            output.close()
+            open("output.txt", 'w').close()
             fp = openFile()
             ifBreak = False
+            break
+        output.close()
     
-    f.close()
     if ifBreak: break
 
 notify("Success","Info saved to output.txt")
