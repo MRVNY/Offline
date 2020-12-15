@@ -544,21 +544,3 @@ Couche Ip :
 	Header Checksum : 0x49af
 	Source Ip Adress : 192.33.159.6
 	Destination Ip Adress : 132.227.61.5
-	Option n° 1
-		Type : 0x07 (Record Route)
-		Length : 39 (Ox27)
-		Pointer : 0x28
-		Router n°1 : 132.227.60.32
-		Router n°2 : 192.44.65.18
-		Router n°3 : 192.70.71.5
-		Router n°4 : 192.33.159.2
-		Router n°5 : 192.33.159.6
-		Router n°6 : 192.70.71.6
-		Router n°7 : 192.44.65.26
-		Router n°8 : 132.227.60.30
-		Router n°9 : 132.227.61.135
-	Option n° 2
-		Type : 0x00 (End of Options List)
-	Data : 64 octets 
-
-
