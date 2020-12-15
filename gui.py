@@ -58,10 +58,6 @@ class Menu:
         self.blist.append(tr.brut)
 
 
-def openFile():
-    filename = filedialog.askopenfilename(initialdir="/",title="Select File",filetypes=(("txt files","*.txt"),("all files","*.*")))
-    return filename
-
 def show(trl,ttl,brut):
     m = Menu()
     for i in range(len(trl)):
@@ -90,5 +86,9 @@ def show(trl,ttl,brut):
 
     root.mainloop()
 
-def notify(s):
-    tk.messagebox.showinfo('Success','Info saved to '+s)
+def notify(t,s):
+    tk.messagebox.showinfo(t,s)
+
+def openPath():
+    filename = filedialog.askopenfilename(initialdir="/",title="Select File",filetypes=(("txt files","*.txt"),("all files","*.*")))
+    return filename

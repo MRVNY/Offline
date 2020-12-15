@@ -1,6 +1,7 @@
 def Ethernet(tab):
+    title = "Ethernet"
     t = len(tab)
-    out = "Couche Eternet : \n"
+    out = "Couche Ethernet : \n"
     out += "\tDestination address : "+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+"\n"
     out += "\tSource address : "+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+":"+tab.pop(0)+"\n"
     typeEternet = tab.pop(0)+tab.pop(0)
@@ -74,7 +75,7 @@ def Ipv4(tab):
             out += "0x07 (Record Route)\n"
             optLength = tab.pop(0)
             optTotalLength -=int(optLength,16)
-            out += "Length : " + str(int(optLength,16) +" (Ox"+ str(optLength)+ ")\n"
+            out += "Length : " + str(int(optLength,16)) +" (Ox"+ str(optLength)+ ")\n"
             out += "Pointer : 0x"+ tab.pop(0)+"\n"
             optLength = int(optLength,16)-3
             routerNo = 1

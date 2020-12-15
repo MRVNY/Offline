@@ -1,77 +1,89 @@
-import tkinter as tk
 import sys
 from function import *
 from gui import *
 
-#print(sys.argv)
+
+def openFile():
+    fp = ""
+    while 1==1:
+        try:
+            fp = open(openPath(), 'r')
+            break
+        except OSError:
+            if fp == "": exit()
+            continue
+    return fp
+
 if(len(sys.argv)==1):
-    path = openFile()
+    fp = openFile()
 elif(len(sys.argv)>2):
-    print("too many arguments")
-    exit()
+    notify("Error","Too many arguements, choose a file instead")
+    fp = openFile()
 else:
-    path = sys.argv[1]
-#readline
-try:
-    fp = open(path, 'r')
-except OSError:
-    print("file error")
-    exit()
+    fp = open(sys.argv[1], 'r')
 
 numTrame = 0
 tab = [[]]
 brut = [""]
 
-for line in fp.read().lower().splitlines():
-    tmp = line.split(' ')
+while 1==1:
+    for line in fp.read().lower().splitlines():
+        tmp = line.split(' ')
 
-    #verifier offset
-    offset = tmp.pop(0)
-    try:
-        if(int(offset,16) == 0 and len(tab[numTrame])>0): 
-            numTrame += 1
-            tab.append([])
-            brut.append("")
-        if(int(offset,16) != len(tab[numTrame])): 
-            print("offset error")
-            exit()
-    except ValueError:
-        continue
-
-    brut[numTrame] += offset + "  "
-
-    #verifier format / eliminer mots invalides
-    
-    for oct in tmp:
+        #verifier offset
+        offset = tmp.pop(0)
         try:
-            if(len(oct)==2 and int(oct,16)<=255):
-                brut[numTrame] += " " + oct
-                tab[numTrame].append(oct)
+            if(int(offset,16) == 0 and len(tab[numTrame])>0): 
+                numTrame += 1
+                tab.append([])
+                brut.append("")
+            if(int(offset,16) != len(tab[numTrame])): 
+                notify("Error","Offset error, please select another file")
+                fp.close()
+                fp = openFile()
+                break
         except ValueError:
             continue
 
-    brut[numTrame] += "\n"
+        brut[numTrame] += offset + "  "
 
-    line = fp.readline()
+        #verifier format / eliminer mots invalides
+        
+        for oct in tmp:
+            try:
+                if(len(oct)==2 and int(oct,16)<=255):
+                    brut[numTrame] += " " + oct
+                    tab[numTrame].append(oct)
+            except ValueError:
+                continue
 
+        brut[numTrame] += "\n"
 
+        line = fp.readline()
 
-#print(tab)
-fp.close()
+    #print(tab)
+    fp.close()
+    break
 
 #affichage
-#root = openWindow()
 tramelist = []
 titlelist = []
 #f = open("output.txt","w")
 for trame in tab:
+    #try:
     out,title = Ethernet(trame.copy())
-    print(title)
-    #print(out+"\n")
+    #except Exception:
+        #notify("Error","Error while analysing data")
+        #exit()
+
     tramelist.append(out)
     titlelist.append(title)
     #f.write(out)
-
+#try:
 show(tramelist,titlelist,brut)
+#except Exception:
+    #notify("Error","Error while showing")
+    #exit()
+
 #f.close()
-#notify("output.txt")
+notify("Success","Info saved to output.txt")
