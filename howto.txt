@@ -1,0 +1,4 @@
+Pour lancer le programme et chosir le fichier a analyser:
+Double clique sur offline.py
+Puis choisir le fichier, une interface graphique s'ouvrira
+Lors de la fermeture du fichier, l'analyse est enregistrée dans le fichier "output.txt"

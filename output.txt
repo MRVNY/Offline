@@ -1,0 +1,509 @@
+Couche Ethernet : 
+	Destination address : 00:50:7f:05:7d:40
+	Source address : 00:10:a4:86:2d:0b
+	EtherType : 0x0800 (IPv4)
+	Data : 537 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0x5 (20 octets)
+	Type of Service : 0x00
+	Total Length : 0x0219 (537 octets )
+	Identifier : 0x1798
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 1
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0x40 (6)
+	Protocol : 	0x06 (TCP)
+	Header Checksum : 0x6c14
+	Source Ip Adress : 10.33.182.178
+	Destination Ip Adress : 192.55.52.40
+	Data : 517 octets 
+
+Couche tcp 
+	Source port number : 33971
+	Destination port number : 80
+	Sequence number : 0xb694b0b8
+	Acknowledgement number : 0x246789e9
+	Header Length : 32 octets (0x8)
+	Flags : 
+		NS : 0
+		CWR : 0
+		ECE : 0
+		URG : 0
+		ACK : 1
+		PSH : 1
+		RST : 0
+		SYN : 0
+		FIN : 0
+	Windows size : 5840 (0x16d0)
+	Checksum : 0x60e4
+	Urgent Pointer : 0x0000
+	Option n° 1
+ 		Type : 0x01 (No Operation)
+	Option n° 2
+ 		Type : 0x01 (No Operation)
+	Option n° 3
+ 		Type : 0x08 (TSOPT - Time Stamp Option) 
+		Length : 10 (0x0a)
+		Option Data : 0x006fa73200000000
+	Data : 485 octets 
+
+Couche http :
+	GET / HTTP/1.1
+	Host: www.xircom.com
+	User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.0.0) Gecko/20020623 Debian/1.0.0-0.woody.1
+	Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,text/css,*/*;q=0.1
+	Accept-Language: fr-FR, fr;q=0.66, en;q=0.33
+	Accept-Encoding: gzip, deflate, compress;q=0.9
+	Accept-Charset: ISO-8859-1, utf-8;q=0.66, *;q=0.66
+	Keep-Alive: 300
+	Connection: keep-alive
+	Data : 0 octets 
+Couche Ethernet : 
+	Destination address : a4:5e:60:f0:1b:9d
+	Source address : ac:3b:77:4d:d6:92
+	EtherType : 0x0800 (IPv4)
+	Data : 84 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0x5 (20 octets)
+	Type of Service : 0x00
+	Total Length : 0x0054 (84 octets )
+	Identifier : 0x0000
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 0
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0x72 (1)
+	Protocol : 	0x01 (ICMP)
+	Header Checksum : 0xe8ce
+	Source Ip Adress : 216.58.198.206
+	Destination Ip Adress : 192.168.0.41
+	Data : 64 octets 
+Couche Ethernet : 
+	Destination address : ac:3b:77:4d:d6:92
+	Source address : a4:5e:60:f0:1b:9d
+	EtherType : 0x0800 (IPv4)
+	Data : 84 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0x5 (20 octets)
+	Type of Service : 0x00
+	Total Length : 0x0054 (84 octets )
+	Identifier : 0x3d00
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 0
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0x40 (1)
+	Protocol : 	0x01 (ICMP)
+	Header Checksum : 0xddce
+	Source Ip Adress : 192.168.0.41
+	Destination Ip Adress : 216.58.198.206
+	Data : 64 octets 
+Couche Ethernet : 
+	Destination address : 00:50:7f:05:7d:40
+	Source address : 00:10:a4:86:2d:0b
+	EtherType : 0x0800 (IPv4)
+	Data : 60 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0x5 (20 octets)
+	Type of Service : 0x00
+	Total Length : 0x003c (60 octets )
+	Identifier : 0x1796
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 1
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0x40 (6)
+	Protocol : 	0x06 (TCP)
+	Header Checksum : 0x6df3
+	Source Ip Adress : 10.33.182.178
+	Destination Ip Adress : 192.55.52.40
+	Data : 40 octets 
+
+Couche tcp 
+	Source port number : 33971
+	Destination port number : 80
+	Sequence number : 0xb694b0b7
+	Acknowledgement number : 0x00000000
+	Header Length : 40 octets (0xa)
+	Flags : 
+		NS : 0
+		CWR : 0
+		ECE : 0
+		URG : 0
+		ACK : 0
+		PSH : 0
+		RST : 0
+		SYN : 1
+		FIN : 0
+	Windows size : 5840 (0x16d0)
+	Checksum : 0xe823
+	Urgent Pointer : 0x0000
+	Option n° 1
+ 		Type : 0x02 (Maximum Segment Size) 
+		Length : 4 (0x04)
+		Option Data : 0x05b4
+	Option n° 2
+ 		Type : 0x04 (SACK Permitted) 
+		Length : 2 (0x02)
+
+	Option n° 3
+ 		Type : 0x08 (TSOPT - Time Stamp Option) 
+		Length : 10 (0x0a)
+		Option Data : 0x006fa72100000000
+	Option n° 4
+ 		Type : 0x01 (No Operation)
+	Option n° 5
+ 		Type : 0x03 (WSOPT - Window Scale) 
+		Length : 3 (0x03)
+		Option Data : 0x00
+	Data : 0 octets 
+Couche Ethernet : 
+	Destination address : 00:10:a4:86:2d:0b
+	Source address : 00:50:7f:05:7d:40
+	EtherType : 0x0800 (IPv4)
+	Data : 64 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0x5 (20 octets)
+	Type of Service : 0x00
+	Total Length : 0x0040 (64 octets )
+	Identifier : 0xd206
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 1
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0x70 (6)
+	Protocol : 	0x06 (TCP)
+	Header Checksum : 0x837e
+	Source Ip Adress : 192.55.52.40
+	Destination Ip Adress : 10.33.182.178
+	Data : 44 octets 
+
+Couche tcp 
+	Source port number : 80
+	Destination port number : 33971
+	Sequence number : 0x246789e8
+	Acknowledgement number : 0xb694b0b8
+	Header Length : 44 octets (0xb)
+	Flags : 
+		NS : 0
+		CWR : 0
+		ECE : 0
+		URG : 0
+		ACK : 1
+		PSH : 0
+		RST : 0
+		SYN : 1
+		FIN : 0
+	Windows size : 64240 (0xfaf0)
+	Checksum : 0xeb66
+	Urgent Pointer : 0x0000
+	Option n° 1
+ 		Type : 0x02 (Maximum Segment Size) 
+		Length : 4 (0x04)
+		Option Data : 0x057a
+	Option n° 2
+ 		Type : 0x01 (No Operation)
+	Option n° 3
+ 		Type : 0x03 (WSOPT - Window Scale) 
+		Length : 3 (0x03)
+		Option Data : 0x00
+	Option n° 4
+ 		Type : 0x01 (No Operation)
+	Option n° 5
+ 		Type : 0x01 (No Operation)
+	Option n° 6
+ 		Type : 0x08 (TSOPT - Time Stamp Option) 
+		Length : 10 (0x0a)
+		Option Data : 0x0000000000000000
+	Option n° 7
+ 		Type : 0x01 (No Operation)
+	Option n° 8
+ 		Type : 0x01 (No Operation)
+	Option n° 9
+ 		Type : 0x04 (SACK Permitted) 
+		Length : 2 (0x02)
+
+	Data : 0 octets 
+Couche Ethernet : 
+	Destination address : 00:50:7f:05:7d:40
+	Source address : 00:10:a4:86:2d:0b
+	EtherType : 0x0800 (IPv4)
+	Data : 52 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0x5 (20 octets)
+	Type of Service : 0x00
+	Total Length : 0x0034 (52 octets )
+	Identifier : 0x1797
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 1
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0x40 (6)
+	Protocol : 	0x06 (TCP)
+	Header Checksum : 0x6dfa
+	Source Ip Adress : 10.33.182.178
+	Destination Ip Adress : 192.55.52.40
+	Data : 32 octets 
+
+Couche tcp 
+	Source port number : 33971
+	Destination port number : 80
+	Sequence number : 0xb694b0b8
+	Acknowledgement number : 0x246789e9
+	Header Length : 32 octets (0x8)
+	Flags : 
+		NS : 0
+		CWR : 0
+		ECE : 0
+		URG : 0
+		ACK : 1
+		PSH : 0
+		RST : 0
+		SYN : 0
+		FIN : 0
+	Windows size : 5840 (0x16d0)
+	Checksum : 0x6877
+	Urgent Pointer : 0x0000
+	Option n° 1
+ 		Type : 0x01 (No Operation)
+	Option n° 2
+ 		Type : 0x01 (No Operation)
+	Option n° 3
+ 		Type : 0x08 (TSOPT - Time Stamp Option) 
+		Length : 10 (0x0a)
+		Option Data : 0x006fa73200000000
+	Data : 0 octets 
+Couche Ethernet : 
+	Destination address : b0:98:2b:c1:75:b2
+	Source address : 40:8d:5c:1e:eb:37
+	EtherType : 0x0800 (IPv4)
+	Data : 274 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0x5 (20 octets)
+	Type of Service : 0x00
+	Total Length : 0x0112 (274 octets )
+	Identifier : 0x4726
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 1
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0x80 (6)
+	Protocol : 	0x06 (TCP)
+	Header Checksum : 0xb729
+	Source Ip Adress : 192.168.1.24
+	Destination Ip Adress : 93.184.220.29
+	Data : 254 octets 
+
+Couche tcp 
+	Source port number : 58792
+	Destination port number : 80
+	Sequence number : 0xece9cf08
+	Acknowledgement number : 0x94e40eed
+	Header Length : 20 octets (0x5)
+	Flags : 
+		NS : 0
+		CWR : 0
+		ECE : 0
+		URG : 0
+		ACK : 1
+		PSH : 1
+		RST : 0
+		SYN : 0
+		FIN : 0
+	Windows size : 65472 (0xffc0)
+	Checksum : 0xa937
+	Urgent Pointer : 0x0000
+	Data : 234 octets 
+Couche Ethernet : 
+	Destination address : b0:98:2b:64:0c:85
+	Source address : 40:8d:5c:1e:eb:37
+	EtherType : 0x0800 (IPv4)
+	Data : 276 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0x5 (20 octets)
+	Type of Service : 0x00
+	Total Length : 0x0114 (276 octets )
+	Identifier : 0xa7f0
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 1
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0x80 (6)
+	Protocol : 	0x06 (TCP)
+	Header Checksum : 0xce76
+	Source Ip Adress : 192.168.1.24
+	Destination Ip Adress : 192.168.1.20
+	Data : 256 octets 
+
+Couche tcp 
+	Source port number : 60169
+	Destination port number : 52235
+	Sequence number : 0x2d3f249e
+	Acknowledgement number : 0xd3de2c5b
+	Header Length : 20 octets (0x5)
+	Flags : 
+		NS : 0
+		CWR : 0
+		ECE : 0
+		URG : 0
+		ACK : 1
+		PSH : 1
+		RST : 0
+		SYN : 0
+		FIN : 0
+	Windows size : 65472 (0xffc0)
+	Checksum : 0xc432
+	Urgent Pointer : 0x0000
+	Data : 236 octets 
+Couche Ethernet : 
+	Destination address : 00:01:02:a5:fb:3a
+	Source address : 00:01:02:a5:fc:8d
+	EtherType : 0x0800 (IPv4)
+	Data : 60 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0x5 (20 octets)
+	Type of Service : 0x00
+	Total Length : 0x003c (60 octets )
+	Identifier : 0xec26
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 1
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0x40 (6)
+	Protocol : 	0x06 (TCP)
+	Header Checksum : 0xcccd
+	Source Ip Adress : 10.33.182.182
+	Destination Ip Adress : 132.227.60.13
+	Data : 40 octets 
+
+Couche tcp 
+	Source port number : 3765
+	Destination port number : 80
+	Sequence number : 0xa9559264
+	Acknowledgement number : 0x00000000
+	Header Length : 40 octets (0xa)
+	Flags : 
+		NS : 0
+		CWR : 0
+		ECE : 0
+		URG : 0
+		ACK : 0
+		PSH : 0
+		RST : 0
+		SYN : 1
+		FIN : 0
+	Windows size : 16060 (0x3ebc)
+	Checksum : 0xa374
+	Urgent Pointer : 0x0000
+	Option n° 1
+ 		Type : 0x02 (Maximum Segment Size) 
+		Length : 4 (0x04)
+		Option Data : 0x05b4
+	Option n° 2
+ 		Type : 0x04 (SACK Permitted) 
+		Length : 2 (0x02)
+
+	Option n° 3
+ 		Type : 0x08 (TSOPT - Time Stamp Option) 
+		Length : 10 (0x0a)
+		Option Data : 0x0839911600000000
+	Option n° 4
+ 		Type : 0x01 (No Operation)
+	Option n° 5
+ 		Type : 0x03 (WSOPT - Window Scale) 
+		Length : 3 (0x03)
+		Option Data : 0x00
+	Data : 0 octets 
+Couche Ethernet : 
+	Destination address : 08:00:20:0a:ac:96
+	Source address : 08:00:20:0a:70:66
+	EtherType : 0x0800 (IPv4)
+	Data : 124 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0xf (60 octets)
+	Type of Service : 0x00
+	Total Length : 0x007c (124 octets )
+	Identifier : 0xcbc9
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 0
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0xff (1)
+	Protocol : 	0x01 (ICMP)
+	Header Checksum : 0xb97f
+	Source Ip Adress : 132.227.61.5
+	Destination Ip Adress : 192.33.159.6
+	Option n° 1
+		Type : 0x07 (Record Route)
+		Length : 39 (Ox27)
+		Pointer : 0x04
+		Router n°1 : 0.0.0.0
+		Router n°2 : 0.0.0.0
+		Router n°3 : 0.0.0.0
+		Router n°4 : 0.0.0.0
+		Router n°5 : 0.0.0.0
+		Router n°6 : 0.0.0.0
+		Router n°7 : 0.0.0.0
+		Router n°8 : 0.0.0.0
+		Router n°9 : 0.0.0.0
+	Option n° 2
+		Type : 0x00 (End of Options List)
+	Data : 64 octets 
+Couche Ethernet : 
+	Destination address : 08:00:20:0a:70:66
+	Source address : 08:00:20:0a:ac:96
+	EtherType : 0x0800 (IPv4)
+	Data : 124 octets 
+
+Couche Ip :
+	Version : 0x4 (Ipv4)
+	Header Length : 0xf (60 octets)
+	Type of Service : 0x00
+	Total Length : 0x007c (124 octets )
+	Identifier : 0x3f86
+	Flags : 	Reserved : 0
+		Don't Fragment (DF) : 0
+		More Fragment (MF) : 0
+		Fragment Offset : 0(0b0000000000000)
+	Time to live (TTL) : 0xfb (1)
+	Protocol : 	0x01 (ICMP)
+	Header Checksum : 0x49af
+	Source Ip Adress : 192.33.159.6
+	Destination Ip Adress : 132.227.61.5
+	Option n° 1
+		Type : 0x07 (Record Route)
+		Length : 39 (Ox27)
+		Pointer : 0x28
+		Router n°1 : 132.227.60.32
+		Router n°2 : 192.44.65.18
+		Router n°3 : 192.70.71.5
+		Router n°4 : 192.33.159.2
+		Router n°5 : 192.33.159.6
+		Router n°6 : 192.70.71.6
+		Router n°7 : 192.44.65.26
+		Router n°8 : 132.227.60.30
+		Router n°9 : 132.227.61.135
+	Option n° 2
+		Type : 0x00 (End of Options List)
+	Data : 64 octets 
