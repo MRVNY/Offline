@@ -62,7 +62,7 @@ def Ipv4(tab):
     optnumber = 1
     optTotalLength = headerLength -20
     while (optTotalLength > 0):
-        out += "Option n° "+optnumber+ "\n Type : "
+        out += "\tOption n° "+str(optnumber)+ "\n\t\tType : "
         opt = tab.pop(0)
         if (opt == "00"): 
             out += "0x00 (End of Options List)\n"
@@ -74,51 +74,59 @@ def Ipv4(tab):
             out += "0x07 (Record Route)\n"
             optLength = tab.pop(0)
             optTotalLength -=int(optLength,16)
-            out += "Length : " + int(optLength,16) +" (Ox"+ optLength+ ")\n"
-            out += "Pointer : 0x"+ tab.pop(0)+"\n"
+            out += "\t\tLength : " + str(int(optLength,16)) +" (Ox"+ optLength+ ")\n"
+            out += "\t\tPointer : 0x"+ tab.pop(0)+"\n"
             optLength = int(optLength,16)-3
             routerNo = 1
-            while(optLength != 0):
-                out += "Router n°"+str(routerNo)+" : "+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16)) +"\n"
-                optLength-=1
+            while(optLength > 0):
+                out += "\t\tRouter n°"+str(routerNo)+" : "+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16))+"."+str(int(tab.pop(0),16)) +"\n"
+                optLength-=4
                 routerNo+=1
         elif (opt == "44"):
             out += "Time Stamp\n"
             optLength = tab.pop(0)
             optTotalLength -=int(optLength,16)
-            out += "Length : " + int(optLength,16) +" (Ox"+ optLength+ ")\n"
-            out += "Pointer : "+ tab.pop(0)+"\n"
+            out += "\t\tLength : " + str(int(optLength,16)) +" (Ox"+ optLength+ ")\n"
+            out += "\t\tPointer : "+ tab.pop(0)+"\n"
             optLength = int(optLength,16)-3
-            while(optLength !=0) : 
-                tab.pop(0)
-                optLength +=1
+            if(optLength>0):
+                out += "\t\t Data : 0x"
+            while(optLength >0) : 
+                out += tab.pop(0)
+                optLength -=1
         elif (opt == "83"):
             out += "Loose Routing\n"
             optLength = tab.pop(0)
             optTotalLength -=int(optLength,16)
-            out += "Length : " + int(optLength,16) +" (Ox"+ optLength+ ")\n"
-            out += "Pointer : "+ tab.pop(0)+"\n"
+            out += "\t\tLength : " + str(int(optLength,16)) +" (Ox"+ optLength+ ")\n"
+            out += "\t\tPointer : "+ tab.pop(0)+"\n"
             optLength = int(optLength,16)-3
-            while(optLength !=0) : 
+            if(optLength>0):
+                out += "\t\t Data : 0x"
+            while(optLength >0) : 
                 tab.pop(0)
-                optLength +=1
+                optLength -=1
         elif (opt == "89"):
-            out += "Strict Routing\n"
+            out += "\t\tStrict Routing\n"
             optLength = tab.pop(0)
             optTotalLength -=int(optLength,16)
-            out += "Length : " + int(optLength,16) +" (Ox"+ optLength+ ")\n"
-            out += "Pointer : "+ tab.pop(0)+"\n"
+            out += "\t\tLength : " + str(int(optLength,16)) +" (Ox"+ optLength+ ")\n"
+            out += "\t\tPointer : "+ tab.pop(0)+"\n"
             optLength = int(optLength,16)-3
+            if(optLength>0):
+                out += "\t\t Data : 0x"
             while(optLength !=0) : 
                 tab.pop(0)
-                optLength +=1
+                optLength -=1
         else :
             out += "Non Reconnu\n"
             optLength = tab.pop(0)
             optTotalLength -=int(optLength,16)
-            out += "Length : " + int(optLength,16) +" (Ox"+ optLength+ ")\n"
-            out += "Pointer : "+ tab.pop(0)+"\n"
+            out += "\t\tLength : " + str(int(optLength,16)) +" (Ox"+ optLength+ ")\n"
+            out += "\t\tPointer : "+ tab.pop(0)+"\n"
             optLength = int(optLength,16)-3
+            if(optLength>0):
+                out += "\t\t Data : 0x"
             while(optLength !=0) : 
                 tab.pop(0)
                 optLength +=1
