@@ -7,7 +7,7 @@ ensuite avec ce tableau il separe et analyse les différents champs et les assoc
 Si les champs ne sont pas complets cela provoque des erreurs et l'utilisateur doit choisir à nouveau un autre fichier valide.
 
 Structure :
-main(offline.py) qui utilise la classe Trame() et qui apelle la classe Ethernet
+main(offline.py) qui apelle la classe Ethernet
 Les fonctions sont contenu dans le ficher function.py
 La classe Trame sert pour l'interface graphique et est contenue dans le fichier gui.py
 output.txt est la sortie 

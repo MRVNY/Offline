@@ -1,4 +1,5 @@
 Pour lancer le programme et chosir le fichier a analyser:
-Double clique sur offline.py
+Tape "python3 offline.py <fichier txt>(optionnel)" dans Terminal
+Ou double clique sur offline.py sous Windows 
 Puis choisir le fichier, une interface graphique s'ouvrira
 Lors de la fermeture du fichier, l'analyse est enregistrée dans le fichier "output.txt"
