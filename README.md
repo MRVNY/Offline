@@ -1,4 +1,8 @@
 # Offline
+
+Vidéo: https://youtu.be/Z544BtdbaLk 
+GitHub: https://github.com/MRVNY/Offline.git
+
 Apres le lancement, l'utilisateur doit choisir un fichier txt qui contient les trames, l'analyseur va ensuite separer les trames 
 en fonction de l'offset
 Lors d'une analyse de trame, l'analyseur va d'abord séparer les differents octets valides et les mettres dans un tableau 

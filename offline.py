@@ -31,7 +31,6 @@ while True:
     tab = [[]]
     brut = [""]
     ifBreak = True
-    print("read")
     for line in fp.read().lower().splitlines():
         tmp = line.split(' ')
 
@@ -42,12 +41,15 @@ while True:
                 numTrame += 1
                 tab.append([])
                 brut.append("")
-            if(int(offset,16) != len(tab[numTrame])): 
+            if(int(offset,16) > len(tab[numTrame])): 
                 notify("Error","Offset error, please select another file")
                 fp.close()
                 fp = openFile()
                 ifBreak = False
                 break
+            brut[numTrame] = brut[numTrame][0:len(brut[numTrame])-3*(len(tab[numTrame])-int(offset,16))]
+            brut[numTrame] += "\n"
+            tab[numTrame] = tab[numTrame][0:int(offset,16)]
         except ValueError:
             continue
 
@@ -61,7 +63,6 @@ while True:
             except ValueError:
                 continue
 
-        brut[numTrame] += "\n"
     if ifBreak: fp.close()
 
     tramelist = []

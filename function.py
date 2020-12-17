@@ -226,8 +226,11 @@ def tcp(tab):
     if (scrport == 80 or dstport == 80): 
         tmp = ""
         if(len(tab)>20):
-            for i in range(20): tmp += bytearray.fromhex(tab[i]).decode()
-            if('HTTP' in tmp): 
+            for i in range(20): 
+                try:
+                    tmp += bytearray.fromhex(tab[i]).decode()
+                except UnicodeDecodeError: break
+            if('HTTP' in tmp and f[8]=='1'): 
                 out += http(tab)
                 protoname = 'HTTP'
     return out, protoname
