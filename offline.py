@@ -74,13 +74,21 @@ while True:
         for trame in tab:
             try:
                 out,title = Ethernet(trame.copy())
-            except Exception:
-                notify("Error","Error while analysing data, please select another file")
+            except IndexError:
+                notify("Error","Erreur trame non complete à la ligne "+str(len(trame)//16+1)+" octet n° "+str(len(trame)%16+1))
                 output.close()
                 open("output.txt", 'w').close()
                 fp = openFile()
                 ifBreak = False
                 break
+            except Exception as text:
+                notify("Error",repr(text))
+                output.close()
+                open("output.txt", 'w').close()
+                fp = openFile()
+                ifBreak = False
+                break
+            
 
             tramelist.append(out)
             titlelist.append(title)

@@ -8,21 +8,27 @@ def Ethernet(tab):
     if typeEternet == "0800":
         out += "\tEtherType : 0x0800 (IPv4)\n"
         out += "\tData : "+str(len(tab))+" octets \n"
-        if(len(tab) != t-14) : raise Exception("Erreur traitement")
-        s,title = Ipv4(tab)
+        if(len(tab) != t-14) : 
+            errO = t-len(tab)
+            raise Exception("Erreur données perdus à la ligne "+str(errO//16+1)+" octet n° "+str(errO%16+1))
+        s,title = Ipv4(tab,14)
         out += s
     elif typeEternet == "0806":
         out += "\tEtherType : 0x0806 (ARP)\n"
         out += "\tData : "+str(len(tab))+" octets \n"
-        if(len(tab) != t-14) : raise Exception("Erreur traitement")
+        if(len(tab) != t-14) :
+            errO = t-len(tab)
+            raise Exception("Erreur données perdus à la ligne "+str(errO//16+1)+" octet n° "+str(errO%16+1))
     else : 
         out += "\tEtherType : 0x"+typeEternet+" (Non reconnu)\n"
         out += "\tData : "+str(len(tab))+" octets \n"
-        if(len(tab) != t-14) : raise Exception("Erreur traitement")
+        if(len(tab) != t-14) :
+            errO = t-len(tab)
+            raise Exception("Erreur données perdus à la ligne "+str(errO//16+1)+" octet n° "+str(errO%16+1))
     return out,title
 
 
-def Ipv4(tab):
+def Ipv4(tab,hd):
     out = "\nCouche Ip :\n"
     out += "\tVersion : 0x"+ tab[0][0]+" (Ipv4)\n"
     headerLength = int(tab[0][1],16)*4
@@ -133,14 +139,16 @@ def Ipv4(tab):
                 optLength +=1
         optnumber +=1
     out += "\tData : "+str(len(tab))+" octets \n"
-    if(len(tab) != t-headerLength) : raise Exception("Erreur traitement")
+    if(len(tab) != t-headerLength) :
+        errO = t-len(tab)+hd
+        raise Exception("Erreur données perdus à la ligne "+str(errO//16+1)+" octet n° "+str(errO%16+1))
     if (proto ==6): 
-        s,protoname = tcp(tab)
+        s,protoname = tcp(tab,hd+headerLength)
         out += s
     title = "Src: "+ipsrc.ljust(15,' ')+"\tDst: "+ipdst.ljust(15, ' ')+"\tProtocol: "+protoname
     return out,title
 
-def tcp(tab):
+def tcp(tab,hd):
     t = len(tab)
     protoname = "TCP"
     out = "\nCouche tcp \n"
@@ -222,7 +230,9 @@ def tcp(tab):
             out += "\n" 
         optnumber+=1
     out += "\tData : "+str(len(tab))+" octets \n"
-    if(len(tab) != t-headerLength) : raise Exception("Erreur traitement")
+    if(len(tab) != t-headerLength) :
+        errO = t-len(tab)+hd
+        raise Exception("Erreur données perdus à la ligne "+str(errO//16+1)+" octet n° "+str(errO%16+1))
     if (scrport == 80 or dstport == 80): 
         tmp = ""
         if(len(tab)>20):
